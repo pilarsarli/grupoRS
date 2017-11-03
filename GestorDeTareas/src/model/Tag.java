@@ -1,0 +1,31 @@
+package model;
+
+public class Tag {
+	private Long id;
+	private String nombre;
+	
+	public Tag(String nombre) {
+		this.setNombre(nombre);
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
+	
+	
+	
+	
+	
+}
