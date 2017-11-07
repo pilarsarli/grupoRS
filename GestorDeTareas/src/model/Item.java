@@ -4,7 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="ITEM")
-public class Item {
+
+public class Item implements java.io.Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idItem;

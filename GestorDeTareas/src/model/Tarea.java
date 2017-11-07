@@ -4,9 +4,10 @@ import java.util.Date;
 import javax.persistence.*;
 import java.util.ArrayList;
 
+
 @Entity
 @Table(name="TAREA")
-public class Tarea {
+public class Tarea implements java.io.Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idTarea;
 	private String nombre;

@@ -1,11 +1,11 @@
 package model;
 
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="TAG")
-public class Tag {
-	
+public class Tag implements java.io.Serializable {	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idTag;
 	private String nombre;

@@ -2,20 +2,11 @@ package model;
 
 import java.util.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="PROYECTO")
-public class Proyecto {
+public class Proyecto implements java.io.Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idProyecto;
@@ -108,12 +99,12 @@ public class Proyecto {
 
 
 	public long getId() {
-		return id;
+		return idProyecto;
 	}
 
 
 	public void setId(long id) {
-		this.id = id;
+		this.idProyecto = id;
 	}
 	
 	
