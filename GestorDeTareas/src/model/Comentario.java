@@ -1,6 +1,6 @@
 package model;
 
-public class Comentario {
+public class Comentario implements java.io.Serializable {
 	
 	private long idComentario;
 	private String cuerpo;

@@ -1,6 +1,6 @@
 package model;
 
-public class Usuario {
+public class Usuario implements java.io.Serializable {
 	private long idUsuario;
 	private String nombreUsuario;
 	private String clave;

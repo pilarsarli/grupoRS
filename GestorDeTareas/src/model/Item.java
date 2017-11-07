@@ -1,6 +1,6 @@
 package model;
 
-public class Item {
+public class Item implements java.io.Serializable {
 	
 	private long idItem;
 	private String descripcion;

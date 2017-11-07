@@ -2,7 +2,7 @@ package model;
 import java.util.Date;
 import java.util.ArrayList;
 
-public class Tarea {
+public class Tarea implements java.io.Serializable {
 	
 	private long idTarea;
 	private String nombre;

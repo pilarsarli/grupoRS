@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class Proyecto {
+public class Proyecto implements java.io.Serializable {
 	private String nombre;
 	private Date fecha_inicio;
 	private Date fecha_estimada;

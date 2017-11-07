@@ -1,6 +1,6 @@
 package model;
 
-public class Tag {
+public class Tag implements java.io.Serializable {
 	private Long id;
 	private String nombre;
 	

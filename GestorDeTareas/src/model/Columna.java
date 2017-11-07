@@ -1,7 +1,7 @@
 package model;
-import java.util.*;
+import java.util.ArrayList;
 
-public class Columna {
+public class Columna implements java.io.Serializable {
 	private Long id;
 	private String nombre;
 	private ArrayList<Tarea> tareas;
