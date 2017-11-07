@@ -1,19 +1,26 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="TAG")
 public class Tag {
-	private Long id;
+	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private long idTag;
 	private String nombre;
+	// CONSULTAR MANY TO MANY CON TAREAS
 	
 	public Tag(String nombre) {
 		this.setNombre(nombre);
 	}
 	
-	public Long getId() {
-		return id;
+	public long getId() {
+		return idTag;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(long id) {
+		this.idTag = id;
 	}
 	public String getNombre() {
 		return nombre;

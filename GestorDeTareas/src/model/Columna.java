@@ -1,9 +1,21 @@
 package model;
 import java.util.*;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COLUMNA")
 public class Columna {
-	private Long id;
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private Long idTarea;
 	private String nombre;
+	@OneToMany(mappedBy="tareas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private ArrayList<Tarea> tareas;
 	
 	
@@ -29,11 +41,11 @@ public class Columna {
 	}
 
 	public Long getId() {
-		return id;
+		return idTarea;
 	}
 	
 	public void setId(Long id) {
-		this.id = id;
+		this.idTarea = id;
 	}
 	public String getNombre() {
 		return nombre;

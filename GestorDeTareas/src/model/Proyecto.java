@@ -2,12 +2,32 @@ package model;
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PROYECTO")
 public class Proyecto {
+	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private long idProyecto;
 	private String nombre;
 	private Date fecha_inicio;
 	private Date fecha_estimada;
+	@ManyToMany (mappedBy="miembros_proyecto")
 	private ArrayList<Usuario> miembrosProyecto;
+	@OneToMany(mappedBy="columnas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private ArrayList<Columna> columnas;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="lider_id")
 	private Usuario lider;
 	
 	public Proyecto (Usuario lider,String n, Date f_i, Date f_e) {
@@ -85,6 +105,17 @@ public class Proyecto {
 	public ArrayList<Usuario> getMiembros(){
 		return this.miembrosProyecto;
 	}
+
+
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	
 	
 }

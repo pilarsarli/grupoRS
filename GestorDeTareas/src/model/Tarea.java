@@ -1,18 +1,29 @@
 package model;
 import java.util.Date;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table(name="TAREA")
 public class Tarea {
-	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idTarea;
 	private String nombre;
 	private String descripcion;
 	private Date fecha_asignacion;
 	private Date fecha_vencimiento;
+	@ManyToMany (mappedBy="tags") 
 	private ArrayList<Tag> tags;
+	@OneToMany(mappedBy="comentarios",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private ArrayList<Comentario> comentarios;
+	@OneToMany(mappedBy="checklist",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private ArrayList<Item> checkList;
+	@ManyToMany (mappedBy="miembros_tarea")
 	private ArrayList<Usuario> miembros;
+	@ManyToOne(optional = false)
+	@JoinColumn(name="columna_id")
+	private Columna columna;
 	
 	public Tarea(long id, String nombre, String descripcion, Date fa, Date fv, String estado) {
 		this.setIdTarea(id);

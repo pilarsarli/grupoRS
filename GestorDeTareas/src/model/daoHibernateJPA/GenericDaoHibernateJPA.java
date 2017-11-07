@@ -7,7 +7,7 @@ import model.dao.GenericDAO;
 
 public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 	private String Service = null;
-	
+	protected Class<T> persistentClass; 
 	protected EntityManager getEMF() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(Service);
 		EntityManager em = emf.createEntityManager();
@@ -63,27 +63,24 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 		return entity;
 		}	
 		
-	
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public T recuperar(long id) {
 		EntityManager em = getEMF();
-		T entity = em.find((Class<T>) this.getPersistentClass(), id);
+		T entity = em.find(this.getPersistentClass(), id);
 		return entity;
 	}
 
 
 	public T eliminar(Serializable id) {
 		EntityManager em = getEMF();
-		T entity = em.find((Class<T>) this.getPersistentClass(), id);
+		T entity = em.find(this.getPersistentClass(), id);
 		if (entity != null) {
 			this.eliminar(entity);
 			}
 			return entity;
 	}
-	protected T getPersistentClass() {
-		return null;
+	protected Class<T> getPersistentClass() {
+		return this.persistentClass;
 	}
 		
 

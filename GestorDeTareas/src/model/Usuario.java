@@ -1,12 +1,27 @@
 package model;
 
+import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="USUARIO")
 public class Usuario {
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idUsuario;
 	private String nombreUsuario;
 	private String clave;
 	private String nombre;
 	private String apellido;
 	private String mail;
+	// CONSULTAR MANY TO MANY MIEMBROS-TAREAS MIEMBROS-PROYECTO
+	@ManyToMany (mappedBy="miembros_proyecto") // ??????????!
+	private ArrayList<Proyecto> proyectos;
 	
 	public Usuario(long id, String username, String clave, String nombre, String apellido, String mail ) {
 		this.setIdUsuario(id);

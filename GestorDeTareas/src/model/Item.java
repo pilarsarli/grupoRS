@@ -1,10 +1,18 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="ITEM")
 public class Item {
 	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idItem;
 	private String descripcion;
 	private boolean estado; // True-> finalizada, False-> sin terminar
+	@ManyToOne(optional = false)
+	@JoinColumn(name="tarea_id")
+	private Tarea tarea;
 	
 	public Item(long id, String descripcion, boolean estado) {
 		this.setIdItem(id);
