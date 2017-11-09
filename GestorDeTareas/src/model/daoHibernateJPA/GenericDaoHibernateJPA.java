@@ -58,8 +58,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 			em.close();
 		}
 		return entity;
-		}	
-		
+	}
 	@Override
 	public T recuperar(long id) {
 		EntityManager em = EMF.getEMF().createEntityManager();
