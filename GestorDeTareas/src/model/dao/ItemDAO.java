@@ -2,6 +2,6 @@ package model.dao;
 
 import model.Item;
 
-public interface ItemDAO extends GenericDAO<ItemDAO> {
+public interface ItemDAO extends GenericDAO<Item> {
 
 }
