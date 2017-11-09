@@ -136,4 +136,14 @@ public class Tarea implements java.io.Serializable {
 		return tags.remove(unTag);
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Tarea [idTarea=" + idTarea + ", nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", fecha_asignacion=" + fecha_asignacion + ", fecha_vencimiento=" + fecha_vencimiento + "]";
+	}
+	
+	
+
 }

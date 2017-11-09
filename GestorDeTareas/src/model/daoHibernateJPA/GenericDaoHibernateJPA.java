@@ -1,5 +1,6 @@
 package model.daoHibernateJPA;
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -40,7 +41,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public T guardar(T entity) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("Gestor");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(Service);
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -75,9 +76,16 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 			}
 			return entity;
 	}
-	protected Class<T> getPersistentClass() {
+	public Class<T> getPersistentClass() {
 		return persistentClass;
 	}
 		
-
+	/*
+	 * public List<T> listar(){
+		List<T> listado = null;
+		EntityManager em = EMF.getEMF().createEntityManager();
+		T entity = em.
+		return listado;
+	}
+	*/
 }

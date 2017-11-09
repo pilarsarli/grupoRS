@@ -45,5 +45,17 @@ public class Item implements java.io.Serializable {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+	@Override
+	public String toString() {
+		String estado;
+		if (this.estado) {
+			estado = "Terminado";
+		}else {estado="Sin terminar";}
+		return "Item [idItem=" + idItem + ", descripcion=" + descripcion + ", estado=" + estado + ", tarea=" + tarea.getNombre()
+				+ "]";
+	}
+	
+	
 		
 }

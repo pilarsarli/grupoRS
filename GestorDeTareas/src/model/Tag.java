@@ -28,6 +28,11 @@ public class Tag implements java.io.Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	@Override
+	public String toString() {
+		return "Tag [idTag=" + idTag + ", nombre=" + nombre + "]";
+	}
 	
 	
 	

@@ -106,6 +106,15 @@ public class Proyecto implements java.io.Serializable {
 	public void setId(long id) {
 		this.idProyecto = id;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Proyecto [idProyecto=" + idProyecto + ", nombre=" + nombre + ", fecha_inicio=" + fecha_inicio
+				+ ", fecha_estimada=" + fecha_estimada + ", lider=" + lider.getNombreUsuario() + "]";
+	}
+	
+	
 	
 	
 	

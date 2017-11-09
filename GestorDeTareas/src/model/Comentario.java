@@ -39,6 +39,12 @@ public class Comentario implements java.io.Serializable {
 	public void setMiembro(Usuario miembro) {
 		this.miembro = miembro;
 	}
+
+	@Override
+	public String toString() {
+		return "Comentario [idComentario=" + idComentario + ", cuerpo=" + cuerpo + ", miembro=" + miembro.getNombreUsuario() + ", tarea="
+				+ tarea.getNombre() + "]";
+	}
 	
 	
 

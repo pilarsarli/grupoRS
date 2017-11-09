@@ -17,8 +17,7 @@ public class Usuario implements java.io.Serializable {
 	@ManyToMany (mappedBy="miembros_proyecto") // ??????????!
 	private ArrayList<Proyecto> proyectos;
 	
-	public Usuario(long id, String username, String clave, String nombre, String apellido, String mail ) {
-		this.setIdUsuario(id);
+	public Usuario(String username, String clave, String nombre, String apellido, String mail ) {
 		this.setNombreUsuario(username);
 		this.setClave(clave);
 		this.setNombre(nombre);
@@ -61,6 +60,12 @@ public class Usuario implements java.io.Serializable {
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombreUsuario=" + nombreUsuario + ", nombre=" + nombre
+				+ ", apellido=" + apellido + ", mail=" + mail + "]";
 	}
 	
 	
