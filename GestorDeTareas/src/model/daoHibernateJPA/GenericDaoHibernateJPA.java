@@ -41,8 +41,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public T guardar(T entity) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory(Service);
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = EMF.getEMF().createEntityManager();
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();
@@ -58,8 +57,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 			em.close();
 		}
 		return entity;
-		}	
-		
+	}
 	@Override
 	public T recuperar(long id) {
 		EntityManager em = EMF.getEMF().createEntityManager();
