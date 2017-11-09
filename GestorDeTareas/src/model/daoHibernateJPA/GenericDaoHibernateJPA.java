@@ -50,6 +50,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 			tx.commit();
 		}
 		catch (RuntimeException e) {
+			System.out.println("la cagaste");
 			if ( tx != null && tx.isActive() ) tx.rollback();
 			throw e; // escribir en un log o mostrar un mensaje
 		}
