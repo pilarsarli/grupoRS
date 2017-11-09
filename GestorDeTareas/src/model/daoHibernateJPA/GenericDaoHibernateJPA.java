@@ -41,8 +41,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public T guardar(T entity) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory(Service);
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = EMF.getEMF().createEntityManager();
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();
@@ -51,6 +50,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 			tx.commit();
 		}
 		catch (RuntimeException e) {
+			System.out.println("la cagaste");
 			if ( tx != null && tx.isActive() ) tx.rollback();
 			throw e; // escribir en un log o mostrar un mensaje
 		}
