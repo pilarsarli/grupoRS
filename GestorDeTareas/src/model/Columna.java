@@ -1,20 +1,25 @@
 package model;
-import java.util.ArrayList;
+import java.util.*;
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="COLUMNA")private
+@Entity
+@Table(name="COLUMNA")
 public class Columna implements java.io.Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long idTarea;
+	private Long idColumna;
 	private String nombre;
 	@OneToMany(mappedBy="tareas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private ArrayList<Tarea> tareas;
+	private Collection<Tarea> tareas;
 	
 	
 	public Columna (String nombre) {
 		this.setNombre(nombre);
-		this.setTareas(new ArrayList<Tarea>());
+	}
+	public Long getIdColumna() {
+		return idColumna;
+	}
+	public void setIdColumna(Long idColumna) {
+		this.idColumna = idColumna;
 	}
 	public Columna() {}
 	
@@ -26,21 +31,14 @@ public class Columna implements java.io.Serializable {
 		return tareas.remove(unaTarea);
 	}
 	
-	public ArrayList<Tarea> getTareas() {
+	public Collection<Tarea> getTareas() {
 		return tareas;
 	}
 
-	public void setTareas(ArrayList<Tarea> tareas) {
-		this.tareas = tareas;
+	public void setTareas(Collection<Tarea> collection) {
+		this.tareas = collection;
 	}
 
-	public Long getId() {
-		return idTarea;
-	}
-	
-	public void setId(Long id) {
-		this.idTarea = id;
-	}
 	public String getNombre() {
 		return nombre;
 	}

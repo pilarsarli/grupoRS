@@ -1,5 +1,7 @@
 package model.daoHibernateJPA;
 
+import javax.swing.text.html.HTML.Tag;
+
 import model.dao.*;
 
 public class DAOFactory {

@@ -2,11 +2,18 @@ package model;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="ITEM")
+@Entity
+@Table(name="ITEM")
 
 public class Item implements java.io.Serializable {
 	
+	public Tarea getTarea() {
+		return tarea;
+	}
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
+	}
+
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idItem;
 	private String descripcion;

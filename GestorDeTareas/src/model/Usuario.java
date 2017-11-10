@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
 import javax.persistence.*;
 
 @Entity
@@ -13,10 +13,8 @@ public class Usuario implements java.io.Serializable {
 	private String nombre;
 	private String apellido;
 	private String mail;
-	// CONSULTAR MANY TO MANY MIEMBROS-TAREAS MIEMBROS-PROYECTO
-	//@ManyToMany (mappedBy="miembrosProyecto") // ??????????!
-	//private ArrayList<Proyecto> proyectos;
-	
+	@ManyToMany (mappedBy="miembrosProyecto") 
+	private Collection<Proyecto> proyectos;
 	public Usuario(String username, String clave, String nombre, String apellido, String mail ) {
 		this.setNombreUsuario(username);
 		this.setClave(clave);
@@ -24,8 +22,9 @@ public class Usuario implements java.io.Serializable {
 		this.setApellido(apellido);
 		this.setMail(mail);
 	}
+
 	public Usuario(){}
-	
+
 	public long getIdUsuario() {
 		return idUsuario;
 	}
@@ -67,6 +66,14 @@ public class Usuario implements java.io.Serializable {
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nombreUsuario=" + nombreUsuario + ", nombre=" + nombre
 				+ ", apellido=" + apellido + ", mail=" + mail + "]";
+	}
+
+	public Collection<Proyecto> getProyectos() {
+		return proyectos;
+	}
+
+	public void setProyectos(Collection<Proyecto> proyectos) {
+		this.proyectos = proyectos;
 	}
 	
 	

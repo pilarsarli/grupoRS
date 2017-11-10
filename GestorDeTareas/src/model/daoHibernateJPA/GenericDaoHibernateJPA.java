@@ -1,14 +1,18 @@
 package model.daoHibernateJPA;
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import model.dao.GenericDAO;
 
 public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
-	private String Service = null;
+	
 	protected Class<T> persistentClass; 
+	
+	public GenericDaoHibernateJPA(Class<T> clazz) {
+		this.persistentClass = clazz;
+	}
 
 	public T actualizar(T entity) {
 		EntityManager em = EMF.getEMF().createEntityManager();
@@ -27,7 +31,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(entity);
+			em.remove(em.contains(entity) ? entity : em.merge(entity));
 			tx.commit();
 		}
 		catch (RuntimeException e) {
@@ -50,7 +54,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 			tx.commit();
 		}
 		catch (RuntimeException e) {
-			System.out.println("la cagaste");
+			System.out.println("Hubo un problema para persistir los datos");
 			if ( tx != null && tx.isActive() ) tx.rollback();
 			throw e; // escribir en un log o mostrar un mensaje
 		}
@@ -67,7 +71,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 	}
 
 
-	public T eliminar(Serializable id) {
+	public T eliminar(Long id) {
 		EntityManager em = EMF.getEMF().createEntityManager();
 		T entity = em.find(this.getPersistentClass(), id);
 		if (entity != null) {

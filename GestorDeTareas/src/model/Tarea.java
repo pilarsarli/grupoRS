@@ -1,13 +1,35 @@
 package model;
+import java.util.Collection;
+import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
-//@Entity
-//@Table(name="TAREA")
+@Entity
+@Table(name="TAREA")
 public class Tarea implements java.io.Serializable {
+	public Columna getColumna() {
+		return columna;
+	}
+
+
+
+	public void setColumna(Columna columna) {
+		this.columna = columna;
+	}
+
+
+
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idTarea;
 	private String nombre;
@@ -15,13 +37,13 @@ public class Tarea implements java.io.Serializable {
 	private Date fecha_asignacion;
 	private Date fecha_vencimiento;
 	@ManyToMany (mappedBy="tags") 
-	private ArrayList<Tag> tags;
+	private Collection<Tag> tags;
 	@OneToMany(mappedBy="comentarios",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private ArrayList<Comentario> comentarios;
+	private Collection<Comentario> comentarios;
 	@OneToMany(mappedBy="checklist",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private ArrayList<Item> checkList;
+	private Collection<Item> checkList;
 	@ManyToMany (mappedBy="miembros_tarea")
-	private ArrayList<Usuario> miembros;
+	private Collection<Usuario> miembros;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="columna_id")
 	private Columna columna;
@@ -35,10 +57,6 @@ public class Tarea implements java.io.Serializable {
 		this.setDescripcion(descripcion);
 		this.setFecha_asignacion(fa);
 		this.setFecha_vencimiento(fv);
-		this.setComentarios(new ArrayList<Comentario>());
-		this.setCheckList(new ArrayList<Item>());
-		this.setMiembros(new ArrayList<Usuario>());
-		ArrayList<Tag> tags = new ArrayList<Tag>();
 		tags.add(new Tag(tag));
 		this.setTags(tags);
 	}
@@ -73,22 +91,22 @@ public class Tarea implements java.io.Serializable {
 	public void setFecha_vencimiento(Date fecha_vencimiento) {
 		this.fecha_vencimiento = fecha_vencimiento;
 	}
-	public ArrayList<Comentario> getComentarios() {
+	public Collection<Comentario> getComentarios() {
 		return comentarios;
 	}
-	public void setComentarios(ArrayList<Comentario> comentarios) {
+	public void setComentarios(Collection<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
-	public ArrayList<Item> getCheckList() {
+	public Collection<Item> getCheckList() {
 		return checkList;
 	}
-	public void setCheckList(ArrayList<Item> checkList) {
+	public void setCheckList(Collection<Item> checkList) {
 		this.checkList = checkList;
 	}
-	public ArrayList<Usuario> getMiembros() {
+	public Collection<Usuario> getMiembros() {
 		return miembros;
 	}
-	public void setMiembros(ArrayList<Usuario> miembros) {
+	public void setMiembros(Collection<Usuario> miembros) {
 		this.miembros = miembros;
 	}
 	
@@ -112,11 +130,11 @@ public class Tarea implements java.io.Serializable {
 	public boolean eliminarMiembro(Usuario unMiembro) {
 		return this.miembros.remove(unMiembro);
 	}
-	public ArrayList<Tag> getTags() {
+	public Collection<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(ArrayList<Tag> tags) {
+	public void setTags(Collection<Tag> tags) {
 		this.tags = tags;
 	}
 	

@@ -3,18 +3,20 @@ package model;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="TAG")
+@Entity
+@Table(name="TAG")
 public class Tag implements java.io.Serializable {	
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idTag;
 	private String nombre;
 	// CONSULTAR MANY TO MANY CON TAREAS
 	
+	public Tag() {}
 	public Tag(String nombre) {
 		this.setNombre(nombre);
 	}
-	public Tag() {}
+	
 	
 	public long getId() {
 		return idTag;
