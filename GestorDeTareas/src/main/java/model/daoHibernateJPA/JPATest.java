@@ -13,6 +13,8 @@ public class JPATest {
 		Usuario user2 = new Usuario("usuario2","clave","nombre2","apellido2","mail2@ejemplo.com");
 		user1 =  user.guardar(user1);
 		user2 =  user.guardar(user2);
+		Usuario user_recup = user.recuperar(1);
+		
 		
 	}
 

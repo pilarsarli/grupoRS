@@ -2,8 +2,8 @@ package model;
 import java.util.ArrayList;
 import javax.persistence.*;
 
-@Entity
-@Table(name="COLUMNA")
+//@Entity
+//@Table(name="COLUMNA")
 public class Columna implements java.io.Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idTarea;

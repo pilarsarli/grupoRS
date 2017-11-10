@@ -4,8 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="PROYECTO")
+//@Entity
+//@Table(name="PROYECTO")
 public class Proyecto implements java.io.Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -13,7 +13,10 @@ public class Proyecto implements java.io.Serializable {
 	private String nombre;
 	private Date fecha_inicio;
 	private Date fecha_estimada;
-	@ManyToMany (mappedBy="miembros_proyecto")
+	@ManyToMany 
+	@JoinTable( name="PROYECTO_USUARIO",
+	joinColumns=@JoinColumn(name="PROYECTO_ID"),
+	inverseJoinColumns=@JoinColumn(name="USUARIO_ID"))
 	private ArrayList<Usuario> miembrosProyecto;
 	@OneToMany(mappedBy="columnas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private ArrayList<Columna> columnas;
