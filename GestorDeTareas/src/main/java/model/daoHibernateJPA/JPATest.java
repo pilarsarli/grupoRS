@@ -14,6 +14,7 @@ public class JPATest {
 		user1 =  user.guardar(user1);
 		user2 =  user.guardar(user2);
 		
+		
 	}
 
 }

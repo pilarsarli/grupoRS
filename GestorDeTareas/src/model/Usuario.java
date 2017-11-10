@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +14,8 @@ public class Usuario implements java.io.Serializable {
 	private String apellido;
 	private String mail;
 	// CONSULTAR MANY TO MANY MIEMBROS-TAREAS MIEMBROS-PROYECTO
-	@ManyToMany (mappedBy="miembros_proyecto") // ??????????!
-	private ArrayList<Proyecto> proyectos;
+	//@ManyToMany (mappedBy="miembros_proyecto") 
+	private List<Proyecto> proyectos;
 	
 	public Usuario(String username, String clave, String nombre, String apellido, String mail ) {
 		this.setNombreUsuario(username);

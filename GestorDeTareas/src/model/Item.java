@@ -2,8 +2,8 @@ package model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="ITEM")
+//@Entity
+//@Table(name="ITEM")
 
 public class Item implements java.io.Serializable {
 	

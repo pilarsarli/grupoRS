@@ -1,8 +1,8 @@
 package model;
 
 import javax.persistence.*;
-@Entity
-@Table(name="COMENTARIO")
+//@Entity
+//@Table(name="COMENTARIO")
 public class Comentario implements java.io.Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)

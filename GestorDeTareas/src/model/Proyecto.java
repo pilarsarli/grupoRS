@@ -4,8 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="PROYECTO")
+//@Entity
+//@Table(name="PROYECTO")
 public class Proyecto implements java.io.Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -14,9 +14,9 @@ public class Proyecto implements java.io.Serializable {
 	private Date fecha_inicio;
 	private Date fecha_estimada;
 	@ManyToMany (mappedBy="miembros_proyecto")
-	private ArrayList<Usuario> miembrosProyecto;
+	private List<Usuario> miembrosProyecto;
 	@OneToMany(mappedBy="columnas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private ArrayList<Columna> columnas;
+	private List<Columna> columnas;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="lider_id")
 	private Usuario lider;
@@ -32,7 +32,7 @@ public class Proyecto implements java.io.Serializable {
 	}
 	
 	
-	public ArrayList<Usuario> getMiembrosProyecto() {
+	public List<Usuario> getMiembrosProyecto() {
 		return miembrosProyecto;
 	}
 
@@ -42,7 +42,7 @@ public class Proyecto implements java.io.Serializable {
 	}
 
 
-	public ArrayList<Columna> getColumnas() {
+	public List<Columna> getColumnas() {
 		return columnas;
 	}
 
@@ -93,7 +93,7 @@ public class Proyecto implements java.io.Serializable {
 	public void eliminarMiembro(Usuario u) {
 		this.miembrosProyecto.remove(u);
 	}
-	public ArrayList<Usuario> getMiembros(){
+	public List<Usuario> getMiembros(){
 		return this.miembrosProyecto;
 	}
 
