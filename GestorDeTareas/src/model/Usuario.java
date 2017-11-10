@@ -13,10 +13,8 @@ public class Usuario implements java.io.Serializable {
 	private String nombre;
 	private String apellido;
 	private String mail;
-	// CONSULTAR MANY TO MANY MIEMBROS-TAREAS MIEMBROS-PROYECTO
 	//@ManyToMany (mappedBy="miembros_proyecto") 
-	private List<Proyecto> proyectos;
-	
+	//private ArrayList<Proyecto> proyectos;
 	public Usuario(String username, String clave, String nombre, String apellido, String mail ) {
 		this.setNombreUsuario(username);
 		this.setClave(clave);
@@ -24,7 +22,7 @@ public class Usuario implements java.io.Serializable {
 		this.setApellido(apellido);
 		this.setMail(mail);
 	}
-	
+	public Usuario() {}
 	public long getIdUsuario() {
 		return idUsuario;
 	}
