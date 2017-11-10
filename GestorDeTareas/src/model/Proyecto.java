@@ -4,8 +4,8 @@ import java.util.*;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="PROYECTO")
+@Entity
+@Table(name="PROYECTO")
 public class Proyecto implements java.io.Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -17,13 +17,15 @@ public class Proyecto implements java.io.Serializable {
 	@JoinTable( name="PROYECTO_USUARIO",
 	joinColumns=@JoinColumn(name="PROYECTO_ID"),
 	inverseJoinColumns=@JoinColumn(name="USUARIO_ID"))
-	private ArrayList<Usuario> miembrosProyecto;
-	@OneToMany(mappedBy="columnas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private List<Columna> columnas;
+	private Collection<Usuario> miembrosProyecto;
+	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="PROYECTO_ID")
+	private Collection<Columna> columnas;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="lider_id")
 	private Usuario lider;
 	
+	public Proyecto() {}
 	public Proyecto (Usuario lider,String n, Date f_i, Date f_e) {
 		this.setLider(lider);
 		this.setNombre(n);
@@ -35,22 +37,28 @@ public class Proyecto implements java.io.Serializable {
 	}
 	
 	
-	public List<Usuario> getMiembrosProyecto() {
+	public long getIdProyecto() {
+		return idProyecto;
+	}
+	public void setIdProyecto(long idProyecto) {
+		this.idProyecto = idProyecto;
+	}
+	public Collection<Usuario> getMiembrosProyecto() {
 		return miembrosProyecto;
 	}
 
 
-	public void setMiembrosProyecto(ArrayList<Usuario> miembrosProyecto) {
+	public void setMiembrosProyecto(Collection<Usuario> miembrosProyecto) {
 		this.miembrosProyecto = miembrosProyecto;
 	}
 
 
-	public List<Columna> getColumnas() {
+	public Collection<Columna> getColumnas() {
 		return columnas;
 	}
 
 
-	public void setColumnas(ArrayList<Columna> Columnas) {
+	public void setColumnas(Collection<Columna> Columnas) {
 		this.columnas = Columnas;
 	}
 
@@ -95,9 +103,6 @@ public class Proyecto implements java.io.Serializable {
 	}
 	public void eliminarMiembro(Usuario u) {
 		this.miembrosProyecto.remove(u);
-	}
-	public List<Usuario> getMiembros(){
-		return this.miembrosProyecto;
 	}
 
 

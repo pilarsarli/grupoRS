@@ -5,11 +5,16 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import model.Tag;
 import model.Usuario;
 import model.dao.UsuarioDAO;
 
 public class UsuarioDaoJPA extends GenericDaoHibernateJPA<Usuario> implements UsuarioDAO {
 
+	public UsuarioDaoJPA() {
+		super(Usuario.class);
+	}	
+	
 	@Override
 	public Usuario autentificacion(String usuario, String clave) {
 		EntityManager em = EMF.getEMF().createEntityManager();

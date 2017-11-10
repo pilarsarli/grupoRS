@@ -2,8 +2,8 @@ package model;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name="ITEM")
+@Entity
+@Table(name="ITEM")
 
 public class Item implements java.io.Serializable {
 	
@@ -11,10 +11,13 @@ public class Item implements java.io.Serializable {
 	private long idItem;
 	private String descripcion;
 	private boolean estado; // True-> finalizada, False-> sin terminar
-	@ManyToOne(optional = false)
+	/*@ManyToOne(optional = false)
 	@JoinColumn(name="tarea_id")
-	private Tarea tarea;
+	private Tarea tarea;*/
 	
+	public Item() {}
+	
+
 	public Item(long id, String descripcion, boolean estado) {
 		this.setIdItem(id);
 		this.setDescripcion(descripcion);
@@ -52,8 +55,7 @@ public class Item implements java.io.Serializable {
 		if (this.estado) {
 			estado = "Terminado";
 		}else {estado="Sin terminar";}
-		return "Item [idItem=" + idItem + ", descripcion=" + descripcion + ", estado=" + estado + ", tarea=" + tarea.getNombre()
-				+ "]";
+		return "Item [idItem=" + idItem + ", descripcion=" + descripcion + ", estado=" + estado + "]";
 	}
 	
 	

@@ -8,7 +8,11 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>model.Usuario</class>
 		<class>model.Tag</class>
-
+		<class>model.Proyecto</class>
+		<class>model.Columna</class>
+		<class>model.Tarea</class>
+		<class>model.Item</class>
+		<class>model.Comentario</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.password" value="admin" />

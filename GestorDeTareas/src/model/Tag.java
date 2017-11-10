@@ -1,6 +1,8 @@
 package model;
 
 
+import java.util.Collection;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,8 @@ public class Tag implements java.io.Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idTag;
 	private String nombre;
+	@ManyToMany (mappedBy="tags") 
+	private Collection<Tarea> tareas;
 	// CONSULTAR MANY TO MANY CON TAREAS
 	
 	public Tag() {}
@@ -17,6 +21,12 @@ public class Tag implements java.io.Serializable {
 		this.setNombre(nombre);
 	}
 	
+	public long getIdTag() {
+		return idTag;
+	}
+	public void setIdTag(long idTag) {
+		this.idTag = idTag;
+	}
 	public long getId() {
 		return idTag;
 	}

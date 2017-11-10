@@ -1,22 +1,34 @@
 package model;
-import java.util.ArrayList;
-import javax.persistence.*;
+import java.util.Collection;
 
-//@Entity
-//@Table(name="COLUMNA")
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COLUMNA")
 public class Columna implements java.io.Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long idTarea;
+	private Long idColumna;
 	private String nombre;
-	@OneToMany(mappedBy="tareas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private ArrayList<Tarea> tareas;
+	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="COLUMNA_ID")
+	private Collection<Tarea> tareas;
 	
 	
+	public Columna() {
+		
+	}
 	public Columna (String nombre) {
 		this.setNombre(nombre);
-		this.setTareas(new ArrayList<Tarea>());
 	}
 	
+
 	public boolean agregarTarea(Tarea unaTarea) {
 		return tareas.add(unaTarea);
 	}
@@ -25,20 +37,20 @@ public class Columna implements java.io.Serializable {
 		return tareas.remove(unaTarea);
 	}
 	
-	public ArrayList<Tarea> getTareas() {
+	public Collection<Tarea> getTareas() {
 		return tareas;
 	}
 
-	public void setTareas(ArrayList<Tarea> tareas) {
+	public void setTareas(Collection<Tarea> tareas) {
 		this.tareas = tareas;
 	}
 
 	public Long getId() {
-		return idTarea;
+		return idColumna;
 	}
 	
 	public void setId(Long id) {
-		this.idTarea = id;
+		this.idColumna = id;
 	}
 	public String getNombre() {
 		return nombre;
