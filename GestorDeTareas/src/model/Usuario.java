@@ -24,6 +24,7 @@ public class Usuario implements java.io.Serializable {
 		this.setApellido(apellido);
 		this.setMail(mail);
 	}
+	public Usuario(){}
 	
 	public long getIdUsuario() {
 		return idUsuario;

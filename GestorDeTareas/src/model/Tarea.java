@@ -26,16 +26,7 @@ public class Tarea implements java.io.Serializable {
 	@JoinColumn(name="columna_id")
 	private Columna columna;
 	
-	public Tarea(long id, String nombre, String descripcion, Date fa, Date fv, String estado) {
-		this.setIdTarea(id);
-		this.setNombre(nombre);
-		this.setDescripcion(descripcion);
-		this.setFecha_asignacion(fa);
-		this.setFecha_vencimiento(fv);
-		this.setComentarios(new ArrayList<Comentario>());
-		this.setCheckList(new ArrayList<Item>());
-		this.setMiembros(new ArrayList<Usuario>());
-	}
+	public Tarea() {}
 	
 	
 

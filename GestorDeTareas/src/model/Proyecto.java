@@ -33,6 +33,7 @@ public class Proyecto implements java.io.Serializable {
 		this.setMiembrosProyecto(new ArrayList<Usuario>());
 		this.setColumnas(new ArrayList<Columna>());
 	}
+	public Proyecto () {}
 	
 	
 	public ArrayList<Usuario> getMiembrosProyecto() {

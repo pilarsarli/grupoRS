@@ -15,17 +15,12 @@ public class Item implements java.io.Serializable {
 	@JoinColumn(name="tarea_id")
 	private Tarea tarea;
 	
-	public Item(long id, String descripcion, boolean estado) {
-		this.setIdItem(id);
+	public Item(String descripcion, boolean estado) {
 		this.setDescripcion(descripcion);
 		this.setEstado(estado);
 	}
+	public Item() {}
 	
-	public Item(long id, String descripcion) {
-		this.setIdItem(id);
-		this.setDescripcion(descripcion);
-		this.setEstado(false);
-	}
 	
 	public long getIdItem() {
 		return idItem;

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 //@Entity
-//@Table(name="COLUMNA")
+//@Table(name="COLUMNA")private
 public class Columna implements java.io.Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idTarea;
@@ -16,6 +16,7 @@ public class Columna implements java.io.Serializable {
 		this.setNombre(nombre);
 		this.setTareas(new ArrayList<Tarea>());
 	}
+	public Columna() {}
 	
 	public boolean agregarTarea(Tarea unaTarea) {
 		return tareas.add(unaTarea);

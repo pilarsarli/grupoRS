@@ -15,12 +15,11 @@ public class Comentario implements java.io.Serializable {
 	@JoinColumn(name="tarea_id")
 	private Tarea tarea;
 	
-	private Comentario(long id, String cuerpo, Usuario mimebro) {
-		this.setIdComentario(id);
+	public Comentario(String cuerpo, Usuario mimebro) {
 		this.setCuerpo(cuerpo);
 		this.setMiembro(mimebro);
 	}
-	
+	public Comentario() {}
 	public long getIdComentario() {
 		return idComentario;
 	}
