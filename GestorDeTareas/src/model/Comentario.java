@@ -1,8 +1,8 @@
 package model;
 
 import javax.persistence.*;
-//@Entity
-//@Table(name="COMENTARIO")
+@Entity
+@Table(name="COMENTARIO")
 public class Comentario implements java.io.Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,6 +20,15 @@ public class Comentario implements java.io.Serializable {
 		this.setMiembro(mimebro);
 	}
 	public Comentario() {}
+	
+	public Tarea getTarea() {
+		return tarea;
+	}
+
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
+	}
+
 	public long getIdComentario() {
 		return idComentario;
 	}

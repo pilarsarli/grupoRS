@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import model.Tag;
 import model.Usuario;
 import model.dao.UsuarioDAO;
 

@@ -18,11 +18,13 @@ public class Proyecto implements java.io.Serializable {
 	joinColumns=@JoinColumn(name="PROYECTO_ID"),
 	inverseJoinColumns=@JoinColumn(name="USUARIO_ID"))
 	private Collection<Usuario> miembrosProyecto;
-	@OneToMany(mappedBy="columnas",cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToMany(cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="PROYECTO_ID")
 	private Collection<Columna> columnas;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="lider_id")
 	private Usuario lider;
+	
 	
 	public Proyecto (Usuario lider,String n, Date f_i, Date f_e) {
 		this.setLider(lider);
@@ -35,13 +37,19 @@ public class Proyecto implements java.io.Serializable {
 	}
 	public Proyecto () {}
 	
-	
+	public long getIdProyecto() {
+		return idProyecto;
+	}
+	public void setIdProyecto(long idProyecto) {
+		this.idProyecto = idProyecto;
+	}
+
 	public Collection<Usuario> getMiembrosProyecto() {
 		return miembrosProyecto;
 	}
 
 
-	public void setMiembrosProyecto(ArrayList<Usuario> miembrosProyecto) {
+	public void setMiembrosProyecto(Collection<Usuario> miembrosProyecto) {
 		this.miembrosProyecto = miembrosProyecto;
 	}
 
@@ -51,7 +59,7 @@ public class Proyecto implements java.io.Serializable {
 	}
 
 
-	public void setColumnas(ArrayList<Columna> Columnas) {
+	public void setColumnas(Collection<Columna> Columnas) {
 		this.columnas = Columnas;
 	}
 
@@ -97,8 +105,6 @@ public class Proyecto implements java.io.Serializable {
 	public void eliminarMiembro(Usuario u) {
 		this.miembrosProyecto.remove(u);
 	}
-	
-
 
 	public long getId() {
 		return idProyecto;

@@ -29,7 +29,7 @@ public class JPATest {
 		System.out.println(t2);
 		tag.eliminar(t1);
 		System.out.println(t1.getId());*/
-		
+
 		
 	}
 

@@ -7,27 +7,21 @@ import javax.persistence.*;
 
 public class Item implements java.io.Serializable {
 	
-	public Tarea getTarea() {
-		return tarea;
-	}
-	public void setTarea(Tarea tarea) {
-		this.tarea = tarea;
-	}
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idItem;
 	private String descripcion;
 	private boolean estado; // True-> finalizada, False-> sin terminar
-	@ManyToOne(optional = false)
+	/*@ManyToOne(optional = false)
 	@JoinColumn(name="tarea_id")
-	private Tarea tarea;
+	private Tarea tarea;*/
+	
+	public Item() {}
 	
 	public Item(String descripcion, boolean estado) {
 		this.setDescripcion(descripcion);
 		this.setEstado(estado);
 	}
-	public Item() {}
-	
 	
 	public long getIdItem() {
 		return idItem;
@@ -54,8 +48,7 @@ public class Item implements java.io.Serializable {
 		if (this.estado) {
 			estado = "Terminado";
 		}else {estado="Sin terminar";}
-		return "Item [idItem=" + idItem + ", descripcion=" + descripcion + ", estado=" + estado + ", tarea=" + tarea.getNombre()
-				+ "]";
+		return "Item [idItem=" + idItem + ", descripcion=" + descripcion + ", estado=" + estado + "]";
 	}
 	
 	

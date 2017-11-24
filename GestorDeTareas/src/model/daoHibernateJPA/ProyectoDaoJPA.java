@@ -11,4 +11,5 @@ public class ProyectoDaoJPA extends GenericDaoHibernateJPA<Proyecto> implements 
 		
 	}
 
+
 }
