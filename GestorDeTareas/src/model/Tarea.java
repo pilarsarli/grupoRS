@@ -93,12 +93,10 @@ public class Tarea implements java.io.Serializable {
 		return miembrosTarea;
 	}
 	public void setMiembros(Collection<Usuario> miembros) {
+
 		this.miembrosTarea = miembros;
 
 		
-	}
-	public void setMiembros(ArrayList<Usuario> miembros) {
-		this.miembrosTarea = miembros;
 	}
 	
 	public boolean agregarComentario(Comentario unComentario) {
