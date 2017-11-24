@@ -18,11 +18,23 @@ public class UsuarioDaoJPA extends GenericDaoHibernateJPA<Usuario> implements Us
 		super(Usuario.class);
 		
 	}
+	public boolean existeUsuario(String username) {
+		EntityManager em = EMF.getEMF().createEntityManager();
+		Query q = em.createQuery("SELECT * FROM USUARIO WHERE nombreUsuario = :usr");
+		q.setParameter("usr", username);
+		List<Usuario> resultado = (List<Usuario>) q.getResultList();
+		if(resultado.size()!=0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 	@Override
 	public Usuario autentificacion(String usuario, String clave) {
 		EntityManager em = EMF.getEMF().createEntityManager();
-		Query q = em.createQuery("SELECT p FROM USUARIO p WHERE p.nombreUsuario = :usr AND p.clave = :clave");
+		Query q = em.createQuery("SELECT * FROM USUARIO WHERE nombreUsuario = :usr AND clave = :clave");
 		q.setParameter("usr", usuario);
 		q.setParameter("clave", clave);
 		List<Usuario> resultado = (List<Usuario>) q.getResultList();
