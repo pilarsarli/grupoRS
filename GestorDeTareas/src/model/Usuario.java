@@ -17,6 +17,7 @@ public class Usuario implements java.io.Serializable {
 	private Collection<Proyecto> proyectos;
 	@ManyToMany (mappedBy="miembrosTarea") 
 	private Collection<Tarea> tareas;
+
 	public Usuario(String username, String clave, String nombre, String apellido, String mail ) {
 		this.setNombreUsuario(username);
 		this.setClave(clave);
@@ -24,6 +25,7 @@ public class Usuario implements java.io.Serializable {
 		this.setApellido(apellido);
 		this.setMail(mail);
 	}
+
 	public Usuario() {}
 	
 	public void setProyectos(Collection<Proyecto> proyectos) {
@@ -32,6 +34,7 @@ public class Usuario implements java.io.Serializable {
 	public Collection<Proyecto> getProyectos(){
 		return this.proyectos;
 	}
+
 	public long getIdUsuario() {
 		return idUsuario;
 	}

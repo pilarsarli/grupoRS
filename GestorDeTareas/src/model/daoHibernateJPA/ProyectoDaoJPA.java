@@ -10,5 +10,8 @@ public class ProyectoDaoJPA extends GenericDaoHibernateJPA<Proyecto> implements 
 
 	public ProyectoDaoJPA() {
 		super(Proyecto.class);
+		
 	}
+
+
 }

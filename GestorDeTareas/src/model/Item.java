@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 public class Item implements java.io.Serializable {
 	
+
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idItem;
 	private String descripcion;
@@ -14,9 +15,14 @@ public class Item implements java.io.Serializable {
 	
 	public Item() {}
 	
+	public Item(String descripcion, boolean estado) {
+		this.setDescripcion(descripcion);
+		this.setEstado(estado);
+	}
 	public Item(String descripcion) {
 		this.setDescripcion(descripcion);
 		this.setEstado(false);
+
 	}
 	
 	public long getIdItem() {

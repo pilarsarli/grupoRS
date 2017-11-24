@@ -1,14 +1,7 @@
 package model;
-import java.util.Collection;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name="COLUMNA")
@@ -27,8 +20,12 @@ public class Columna implements java.io.Serializable {
 	public Columna (String nombre) {
 		this.setNombre(nombre);
 	}
-	
-
+	public Long getIdColumna() {
+		return idColumna;
+	}
+	public void setIdColumna(Long idColumna) {
+		this.idColumna = idColumna;
+	}
 	public boolean agregarTarea(Tarea unaTarea) {
 		return tareas.add(unaTarea);
 	}
@@ -52,6 +49,7 @@ public class Columna implements java.io.Serializable {
 	public void setId(Long id) {
 		this.idColumna = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}

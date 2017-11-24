@@ -26,6 +26,7 @@ public class JPATest {
 
 		//Probamos Eliminarlo por id
 		usuarioDAO.eliminar((long) 3);
+
 		
 	}
 

@@ -16,8 +16,9 @@ public class UsuarioDaoJPA extends GenericDaoHibernateJPA<Usuario> implements Us
 
 	public UsuarioDaoJPA() {
 		super(Usuario.class);
-	}	
-	
+		
+	}
+
 	@Override
 	public Usuario autentificacion(String usuario, String clave) {
 		EntityManager em = EMF.getEMF().createEntityManager();

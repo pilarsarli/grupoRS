@@ -25,7 +25,7 @@ public class Proyecto implements java.io.Serializable {
 	@JoinColumn(name="lider_id")
 	private Usuario lider;
 	
-	public Proyecto() {}
+	
 	public Proyecto (Usuario lider,String n, Date f_i, Date f_e) {
 		this.setLider(lider);
 		this.setNombre(n);
@@ -35,7 +35,7 @@ public class Proyecto implements java.io.Serializable {
 		this.setMiembrosProyecto(new ArrayList<Usuario>());
 		this.setColumnas(new ArrayList<Columna>());
 	}
-	
+	public Proyecto () {}
 	
 	public long getIdProyecto() {
 		return idProyecto;
@@ -43,6 +43,7 @@ public class Proyecto implements java.io.Serializable {
 	public void setIdProyecto(long idProyecto) {
 		this.idProyecto = idProyecto;
 	}
+
 	public Collection<Usuario> getMiembrosProyecto() {
 		return miembrosProyecto;
 	}
@@ -104,7 +105,6 @@ public class Proyecto implements java.io.Serializable {
 	public void eliminarMiembro(Usuario u) {
 		this.miembrosProyecto.remove(u);
 	}
-
 
 	public long getId() {
 		return idProyecto;

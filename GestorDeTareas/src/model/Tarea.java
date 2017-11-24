@@ -1,12 +1,13 @@
 package model;
+
 import java.util.*;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name="TAREA")
 public class Tarea implements java.io.Serializable {
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private long idTarea;
 	private String nombre;
@@ -33,16 +34,7 @@ public class Tarea implements java.io.Serializable {
 	@JoinColumn(name="columna_id")
 	private Columna columna;*/
 	
-	public Tarea(long id, String nombre, String descripcion, Date fa, Date fv, String estado) {
-		this.setIdTarea(id);
-		this.setNombre(nombre);
-		this.setDescripcion(descripcion);
-		this.setFecha_asignacion(fa);
-		this.setFecha_vencimiento(fv);
-		this.setComentarios(new ArrayList<Comentario>());
-		this.setCheckList(new ArrayList<Item>());
-		this.setMiembros(new ArrayList<Usuario>());
-	}
+	public Tarea() {}
 	
 	
 
@@ -51,10 +43,6 @@ public class Tarea implements java.io.Serializable {
 		this.setDescripcion(descripcion);
 		this.setFecha_asignacion(fa);
 		this.setFecha_vencimiento(fv);
-		this.setComentarios(new ArrayList<Comentario>());
-		this.setCheckList(new ArrayList<Item>());
-		this.setMiembros(new ArrayList<Usuario>());
-		ArrayList<Tag> tags = new ArrayList<Tag>();
 		tags.add(new Tag(tag));
 		this.setTags(tags);
 	}
@@ -105,7 +93,10 @@ public class Tarea implements java.io.Serializable {
 		return miembrosTarea;
 	}
 	public void setMiembros(Collection<Usuario> miembros) {
+
 		this.miembrosTarea = miembros;
+
+		
 	}
 	
 	public boolean agregarComentario(Comentario unComentario) {
@@ -132,7 +123,7 @@ public class Tarea implements java.io.Serializable {
 		return tags;
 	}
 
-	public void setTags(ArrayList<Tag> tags) {
+	public void setTags(Collection<Tag> tags) {
 		this.tags = tags;
 	}
 	
@@ -142,8 +133,6 @@ public class Tarea implements java.io.Serializable {
 	public boolean eliminarTag(Tag unTag) {
 		return tags.remove(unTag);
 	}
-
-
 
 	@Override
 	public String toString() {

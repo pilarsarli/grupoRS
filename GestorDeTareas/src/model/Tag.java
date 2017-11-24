@@ -27,13 +27,7 @@ public class Tag implements java.io.Serializable {
 	public void setIdTag(long idTag) {
 		this.idTag = idTag;
 	}
-	public long getId() {
-		return idTag;
-	}
-	
-	public void setId(long id) {
-		this.idTag = id;
-	}
+
 	public String getNombre() {
 		return nombre;
 	}
