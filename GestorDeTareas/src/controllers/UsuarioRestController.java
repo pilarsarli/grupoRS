@@ -16,20 +16,21 @@ import org.springframework.web.util.UriComponentsBuilder;
 import model.Usuario;
 import model.daoHibernateJPA.UsuarioDaoJPA;
 
-@RestController
+@RestController 
+@RequestMapping("/usuarios")
 public class UsuarioRestController {
 	
 	@Autowired
-	UsuarioDaoJPA service = new UsuarioDaoJPA();
+	UsuarioDaoJPA service; //spring deberia levantarlo con el autowired, no hace falta el new
 	
-	@RequestMapping(value = "/usuario/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/usuario/{id}", method = RequestMethod.GET, produces = "application/json") //tiraba error de la otra forma de json
 	public ResponseEntity<Usuario> getUsuario(@PathVariable("id") long id){
 		Usuario user = service.recuperar(id);
 		if (user == null) {
-			 System.out.println("Usuario con id " + id + " no encontrado");
+			 System.out.println("Usuario con id: " + id + " no encontrado");
 			 return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Usuario>(user, HttpStatus.OK);
+		return new ResponseEntity<Usuario>(user, HttpStatus.OK); //funciona
 	}
 	
 	@RequestMapping(value = "/usuario/", method = RequestMethod.POST)
@@ -42,7 +43,7 @@ public class UsuarioRestController {
 		 service.persistir(user);
 		 HttpHeaders headers = new HttpHeaders();
 		 headers.setLocation(ucBuilder.path("/usuario/{id}").buildAndExpand(user.getIdUsuario()).toUri());
-		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); //funciona
 	}
 	
 	 @RequestMapping(value = "/usuario/{id}", method = RequestMethod.PUT)
@@ -62,20 +63,20 @@ public class UsuarioRestController {
 		 currentUser.setMail(user.getMail()); 
 	
 		 service.actualizar(currentUser);
-		 return new ResponseEntity<Usuario>(currentUser, HttpStatus.OK);
+		 return new ResponseEntity<Usuario>(currentUser, HttpStatus.OK); //funciona
 	 }
 	
-	 @RequestMapping(value="/autenticacion", method=RequestMethod.POST)
+	 @RequestMapping(value="/autenticacion/", method=RequestMethod.POST)
 	 public ResponseEntity<Void> autenticar(@RequestHeader String username, @RequestHeader String clave,UriComponentsBuilder ucBuilder){
-		 System.out.println("Autenticando el usuario ");
+		 System.out.println("Autenticando el usuario: " + username );
 		 Usuario user = service.autentificacion(username, clave);
 		 HttpHeaders headers = new HttpHeaders();
-		 if (user!= null) {
+		 if (user == null) {
 			 return new ResponseEntity<Void>(headers, HttpStatus.FORBIDDEN);
 		 }else {
 			 headers.setLocation(ucBuilder.path("/usuario/{id}").buildAndExpand(user.getIdUsuario()).toUri());
 			 return new ResponseEntity<Void>(headers, HttpStatus.NO_CONTENT);
-		 }
+		 } //funciona
 	 }
 	
 }

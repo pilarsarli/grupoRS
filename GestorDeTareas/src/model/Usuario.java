@@ -13,7 +13,7 @@ public class Usuario implements java.io.Serializable {
 	private String nombre;
 	private String apellido;
 	private String mail;
-	@ManyToMany (mappedBy="miembrosProyecto") 
+	@ManyToMany (mappedBy="miembrosProyecto", fetch=FetchType.EAGER) 
 	private Collection<Proyecto> proyectos;
 	@ManyToMany (mappedBy="miembrosTarea") 
 	private Collection<Tarea> tareas;

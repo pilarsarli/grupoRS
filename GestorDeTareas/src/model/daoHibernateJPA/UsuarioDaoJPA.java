@@ -20,8 +20,8 @@ public class UsuarioDaoJPA extends GenericDaoHibernateJPA<Usuario> implements Us
 	}
 	public boolean existeUsuario(String username) {
 		EntityManager em = EMF.getEMF().createEntityManager();
-		Query q = em.createQuery("SELECT * FROM USUARIO WHERE nombreUsuario = :usr");
-		q.setParameter("usr", username);
+		Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = :usr"); //se pone usuario xq es x la clase no x la tabla
+		q.setParameter("usr", username); //se pone u no *xq jsql no entiende el pelotudo
 		List<Usuario> resultado = (List<Usuario>) q.getResultList();
 		if(resultado.size()!=0){
 			return true;
@@ -34,17 +34,10 @@ public class UsuarioDaoJPA extends GenericDaoHibernateJPA<Usuario> implements Us
 	@Override
 	public Usuario autentificacion(String usuario, String clave) {
 		EntityManager em = EMF.getEMF().createEntityManager();
-		Query q = em.createQuery("SELECT * FROM USUARIO WHERE nombreUsuario = :usr AND clave = :clave");
+		Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = :usr AND u.clave = :clave");
 		q.setParameter("usr", usuario);
 		q.setParameter("clave", clave);
-		List<Usuario> resultado = (List<Usuario>) q.getResultList();
-		if(resultado.size()!=0){
-			long id= resultado.get(0).getIdUsuario();
-			return (this.recuperar(id)); //recupera el usuario y lo retorna
-		}
-		else{
-			return null;
-		}
-	}
-
+		Usuario resultado = (Usuario) q.getSingleResult();
+		return resultado; 
+}
 }
