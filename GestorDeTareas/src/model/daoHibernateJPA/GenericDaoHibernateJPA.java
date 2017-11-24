@@ -40,24 +40,14 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 	@Override
 	public void eliminar(T entity) {
 		EntityManager em = this.getEntityManager();
-		EntityTransaction tx = null;
-		try {
-			tx = em.getTransaction();
-			tx.begin();
-			em.remove(em.contains(entity) ? entity : em.merge(entity));
-			tx.commit();
-		}
-		catch (RuntimeException e) {
-		if ( tx != null && tx.isActive() ) tx.rollback();
-		throw e; // escribir en un log o mostrar un mensaje
-		}
-		finally {
-		em.close();
-		}
+		em.remove(em.contains(entity) ? entity : em.merge(entity));
+
 	}
 
-	@Override
-	public T guardar(T entity) {
+	
+	/*@Override
+	 * public T guardar(T entity) {
+	
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = null;
 		try {
@@ -75,7 +65,8 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 			em.close();
 		}
 		return entity;
-	}
+	}  */
+	
 	@Override
 	public T recuperar(long id) {
 		EntityManager em = this.getEntityManager();

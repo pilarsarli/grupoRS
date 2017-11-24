@@ -23,9 +23,9 @@ public class JPATest {
 		//Probamos Modificarlo
 		user1.setNombreUsuario("usuario modificado");
 		usuarioDAO.actualizar(user1);
-	
+
 		//Probamos Eliminarlo por id
-		usuarioDAO.eliminar(user1.getIdUsuario());
+		usuarioDAO.eliminar((long) 3);
 		
 	}
 
