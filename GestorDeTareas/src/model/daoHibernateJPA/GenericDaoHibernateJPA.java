@@ -3,19 +3,34 @@ import java.io.Serializable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import model.dao.GenericDAO;
-
+@Transactional
 public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 	
 	protected Class<T> persistentClass; 
+	EntityManager entityManager = null ;
 	
 	public GenericDaoHibernateJPA(Class<T> clazz) {
 		this.persistentClass = clazz;
 	}
-
+	@PersistenceContext
+	public void setEntityManager(EntityManager em) {
+		this.entityManager=em;
+	}
+	
+	public EntityManager getEntityManager() {
+		if (entityManager==null) {
+			EntityManager em = EMF.getEMF().createEntityManager();
+			this.setEntityManager(em);
+		}
+		return this.entityManager;
+	}
 	public T actualizar(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityManager em = this.getEntityManager();
 		EntityTransaction etx= em.getTransaction();
 		etx.begin();
 		T ent = em.merge(entity);
@@ -26,7 +41,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public void eliminar(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();
@@ -45,7 +60,7 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 
 	@Override
 	public T guardar(T entity) {
-		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = null;
 		try {
 			tx = em.getTransaction();
@@ -65,14 +80,14 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 	}
 	@Override
 	public T recuperar(long id) {
-		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityManager em = this.getEntityManager();
 		T entity = em.find((Class<T>) this.getPersistentClass(), id);
 		return entity;
 	}
 
 
 	public T eliminar(Long id) {
-		EntityManager em = EMF.getEMF().createEntityManager();
+		EntityManager em = this.getEntityManager();
 		T entity = em.find(this.getPersistentClass(), id);
 		if (entity != null) {
 			this.eliminar(entity);
@@ -81,6 +96,10 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 	}
 	public Class<T> getPersistentClass() {
 		return persistentClass;
+	}
+	public T persistir(T entity) {
+		this.getEntityManager().persist(entity);
+		return entity;
 	}
 		
 	/*

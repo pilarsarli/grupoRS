@@ -104,7 +104,7 @@ public class Tarea implements java.io.Serializable {
 	public Collection<Usuario> getMiembros() {
 		return miembrosTarea;
 	}
-	public void setMiembros(ArrayList<Usuario> miembros) {
+	public void setMiembros(Collection<Usuario> miembros) {
 		this.miembrosTarea = miembros;
 	}
 	

@@ -11,21 +11,10 @@ public class Item implements java.io.Serializable {
 	private long idItem;
 	private String descripcion;
 	private boolean estado; // True-> finalizada, False-> sin terminar
-	/*@ManyToOne(optional = false)
-	@JoinColumn(name="tarea_id")
-	private Tarea tarea;*/
 	
 	public Item() {}
 	
-
-	public Item(long id, String descripcion, boolean estado) {
-		this.setIdItem(id);
-		this.setDescripcion(descripcion);
-		this.setEstado(estado);
-	}
-	
-	public Item(long id, String descripcion) {
-		this.setIdItem(id);
+	public Item(String descripcion) {
 		this.setDescripcion(descripcion);
 		this.setEstado(false);
 	}
