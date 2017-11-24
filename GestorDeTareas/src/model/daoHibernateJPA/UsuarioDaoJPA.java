@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import model.Usuario;
 import model.dao.UsuarioDAO;
 
-@Repository
+@Repository("usuarioDaoJPA")
 public class UsuarioDaoJPA extends GenericDaoHibernateJPA<Usuario> implements UsuarioDAO {
 
 	public UsuarioDaoJPA() {

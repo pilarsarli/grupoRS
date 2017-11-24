@@ -29,12 +29,10 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 	}
 	public T actualizar(T entity) {
 		EntityManager em = this.getEntityManager();
-		EntityTransaction etx= em.getTransaction();
-		etx.begin();
-		T ent = em.merge(entity);
-		etx.commit();
-		em.close();
-		return ent;
+		//EntityTransaction etx= em.getTransaction();
+		//etx.begin();
+		return em.merge(entity);
+		//em.close();
 	}
 
 	@Override
