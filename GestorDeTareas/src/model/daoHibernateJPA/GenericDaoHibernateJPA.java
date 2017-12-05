@@ -1,10 +1,14 @@
 package model.daoHibernateJPA;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import model.Usuario;
 import model.dao.GenericDAO;
 @Transactional
 public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
@@ -41,7 +45,6 @@ public class GenericDaoHibernateJPA<T> implements GenericDAO<T> {
 		em.remove(em.contains(entity) ? entity : em.merge(entity));
 
 	}
-
 	
 	/*@Override
 	 * public T guardar(T entity) {

@@ -17,11 +17,10 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<!-- <property name="driverClass" value="com.mysql.jdbc.Driver"/> sin usan 
-			.properties -->
+		<!-- <property name="driverClass" value="com.mysql.jdbc.Driver"/> sin usar	.properties -->
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/GestorDeTareas" />
-		<property name="user" value="root" />
-		<property name="password" value="" />
+		<property name="user" value="admin" />
+		<property name="password" value="admin" />
 		<property name="acquireIncrement" value="2" />
 		<property name="minPoolSize" value="20" />
 		<property name="maxPoolSize" value="50" />

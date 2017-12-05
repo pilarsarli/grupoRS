@@ -52,6 +52,10 @@ public class Item implements java.io.Serializable {
 		}else {estado="Sin terminar";}
 		return "Item [idItem=" + idItem + ", descripcion=" + descripcion + ", estado=" + estado + "]";
 	}
+
+	public boolean getEstado() {
+		return this.estado;
+	}
 	
 	
 		
