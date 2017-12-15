@@ -15,7 +15,7 @@ import model.Proyecto;
 import model.daoHibernateJPA.ProyectoDaoJPA;
 
 @RestController 
-@RequestMapping("/proyecto")
+@RequestMapping("/proyectos")
 public class ProyectoRestController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class ProyectoRestController {
 			 System.out.println("Proyecto con id: " + id + " no encontrado");
 			 return new ResponseEntity<Proyecto>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Proyecto>(proyecto, HttpStatus.OK); //funciona
+		return new ResponseEntity<Proyecto>(proyecto, HttpStatus.OK); //ver como hacer con miembros_proyecto(json)
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -41,7 +41,7 @@ public class ProyectoRestController {
 		 service.persistir(proyecto);
 		 HttpHeaders headers = new HttpHeaders();
 		 headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(proyecto.getIdProyecto()).toUri());
-		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); 
+		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); //ver Usuario lider, recibe id y pide objeto
 	}
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

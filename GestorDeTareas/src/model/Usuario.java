@@ -15,7 +15,7 @@ public class Usuario implements java.io.Serializable {
 	private String mail;
 	@ManyToMany (mappedBy="miembrosProyecto", fetch=FetchType.EAGER) 
 	private Collection<Proyecto> proyectos;
-	@ManyToMany (mappedBy="miembrosTarea") 
+	@ManyToMany (mappedBy="miembrosTarea", fetch=FetchType.EAGER) 
 	private Collection<Tarea> tareas;
 
 	public Usuario(String username, String clave, String nombre, String apellido, String mail ) {

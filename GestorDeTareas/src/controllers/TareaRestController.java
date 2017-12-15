@@ -15,7 +15,7 @@ import model.Tarea;
 import model.daoHibernateJPA.TareaDaoJPA;
 
 @RestController 
-@RequestMapping("/tarea")
+@RequestMapping("/tareas")
 public class TareaRestController {
 	
 	@Autowired
@@ -28,7 +28,7 @@ public class TareaRestController {
 			 System.out.println("Tarea con id: " + id + " no encontrada");
 			 return new ResponseEntity<Tarea>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Tarea>(tarea, HttpStatus.OK); //funciona
+		return new ResponseEntity<Tarea>(tarea, HttpStatus.OK); //
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -64,7 +64,7 @@ public class TareaRestController {
 		 currentTarea.setTags(tarea.getTags());
 	
 		 service.actualizar(currentTarea);
-		 return new ResponseEntity<Tarea>(currentTarea, HttpStatus.OK); //funciona
+		 return new ResponseEntity<Tarea>(currentTarea, HttpStatus.OK); //
 	 }
 	
 

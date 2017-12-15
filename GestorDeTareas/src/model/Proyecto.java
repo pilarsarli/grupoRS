@@ -23,7 +23,7 @@ public class Proyecto implements java.io.Serializable {
 	private Collection<Columna> columnas;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="lider_id")
-	private Usuario lider;
+	private Usuario lider; //lider es un usuario o el id del usuario
 	
 	
 	public Proyecto (Usuario lider,String n, Date f_i, Date f_e) {

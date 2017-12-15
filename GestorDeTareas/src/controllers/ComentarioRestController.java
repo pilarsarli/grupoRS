@@ -1,5 +1,6 @@
 package controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,10 @@ import model.Comentario;
 import model.daoHibernateJPA.ComentarioDaoJPA;
 
 @RestController 
-@RequestMapping("/comentario")
+@RequestMapping("/comentarios")
 public class ComentarioRestController {
+	
+	@Autowired
 	ComentarioDaoJPA service; 
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json") 

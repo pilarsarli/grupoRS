@@ -40,7 +40,7 @@ public class TagRestController {
 		 service.persistir(tag);
 		 HttpHeaders headers = new HttpHeaders();
 		 headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(tag.getIdTag()).toUri());
-		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); 
+		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); //funciona
 	}
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

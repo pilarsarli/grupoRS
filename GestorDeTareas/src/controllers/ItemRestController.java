@@ -42,7 +42,7 @@ public class ItemRestController {
 		 service.persistir(item);
 		 HttpHeaders headers = new HttpHeaders();
 		 headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(item.getIdItem()).toUri());
-		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); 
+		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);  //funciona con tarea_id = NULL
 	}
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -59,7 +59,7 @@ public class ItemRestController {
 		 currentItem.setDescripcion(item.getDescripcion());
 		
 		 service.actualizar(currentItem);
-		 return new ResponseEntity<Item>(currentItem, HttpStatus.OK); //funciona
+		 return new ResponseEntity<Item>(currentItem, HttpStatus.OK); //funciona, ver como modificar la tarea
 	 }
 	
 

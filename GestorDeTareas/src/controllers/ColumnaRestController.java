@@ -1,5 +1,6 @@
 package controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,10 @@ import model.Columna;
 import model.daoHibernateJPA.ColumnaDaoJPA;
 
 @RestController 
-@RequestMapping("/columna")
+@RequestMapping("/columnas")
 public class ColumnaRestController {
+	
+	@Autowired
 	ColumnaDaoJPA service; 
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json") 
@@ -25,12 +28,12 @@ public class ColumnaRestController {
 			 System.out.println("Columna con id: " + id + " no encontrada");
 			 return new ResponseEntity<Columna>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Columna>(columna, HttpStatus.OK); //funciona
+		return new ResponseEntity<Columna>(columna, HttpStatus.OK); //error con las tareas de json
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<Void> createColumna(@RequestBody Columna columna, UriComponentsBuilder ucBuilder) {
-		System.out.println("Creando la columna" + columna.getNombre() );
+		System.out.println("Creando la columna " + columna.getNombre() );
 		/*
 		 * if (service.existe(columna.getNombre())) {
 			System.out.println("Ya existe una columna con nombre " + columna.getNombre());
@@ -40,7 +43,7 @@ public class ColumnaRestController {
 		 service.persistir(columna);
 		 HttpHeaders headers = new HttpHeaders();
 		 headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(columna.getIdColumna()).toUri());
-		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); 
+		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);  //funciona, id_proyecto = null
 	}
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
