@@ -1,6 +1,14 @@
 package model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="ITEM")
@@ -9,9 +17,13 @@ public class Item implements java.io.Serializable {
 	
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private long idItem;
+	private Long idItem;
 	private String descripcion;
 	private boolean estado; // True-> finalizada, False-> sin terminar
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="tarea_id")
+	private Tarea tarea;
 	
 	public Item() {}
 	
@@ -25,10 +37,10 @@ public class Item implements java.io.Serializable {
 
 	}
 	
-	public long getIdItem() {
+	public Long getIdItem() {
 		return idItem;
 	}
-	public void setIdItem(long idItem) {
+	public void setIdItem(Long idItem) {
 		this.idItem = idItem;
 	}
 	public String getDescripcion() {
@@ -55,6 +67,14 @@ public class Item implements java.io.Serializable {
 
 	public boolean getEstado() {
 		return this.estado;
+	}
+
+	public Tarea getTarea() {
+		return tarea;
+	}
+
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
 	}
 	
 	

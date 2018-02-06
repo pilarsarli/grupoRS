@@ -28,7 +28,7 @@ public class ComentarioRestController {
 			 System.out.println("Comentario con id: " + id + " no encontrado");
 			 return new ResponseEntity<Comentario>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Comentario>(comentario, HttpStatus.OK); //funciona
+		return new ResponseEntity<Comentario>(comentario, HttpStatus.OK); //
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)

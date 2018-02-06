@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import model.Columna;
 import model.Proyecto;
+import model.Tarea;
 import model.daoHibernateJPA.ProyectoDaoJPA;
+import model.daoHibernateJPA.ColumnaDaoJPA;
 
 @RestController 
 @RequestMapping("/proyectos")
@@ -20,6 +23,8 @@ public class ProyectoRestController {
 
 	@Autowired
 	ProyectoDaoJPA service; 
+	@Autowired
+	ColumnaDaoJPA serviceColumna; 
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json") 
 	public ResponseEntity<Proyecto> getProyecto(@PathVariable("id") long id){
@@ -41,6 +46,7 @@ public class ProyectoRestController {
 		 service.persistir(proyecto);
 		 HttpHeaders headers = new HttpHeaders();
 		 headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(proyecto.getIdProyecto()).toUri());
+		 
 		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); //ver Usuario lider, recibe id y pide objeto
 	}
 	
@@ -64,6 +70,23 @@ public class ProyectoRestController {
 		 service.actualizar(currentProyecto);
 		 return new ResponseEntity<Proyecto>(currentProyecto, HttpStatus.OK); //funciona
 	 }
+	 
+	 @RequestMapping(value = "/{id}/columna", method = RequestMethod.POST)
+	 public ResponseEntity<Void> createColumna(@RequestBody Columna columna, UriComponentsBuilder ucBuilder,@PathVariable("id") long id) {
+			Proyecto p = service.recuperar(id);
+			columna.setProyecto(p);
+		 	System.out.println("Creando la columna " + columna.getNombre() );
+			/*
+			 * if (service.existe(columna.getNombre())) {
+				System.out.println("Ya existe una columna con nombre " + columna.getNombre());
+				return new ResponseEntity<Void>(HttpStatus.CONFLICT); //Código de respuesta 409
+			 }
+			 **/
+			 serviceColumna.persistir(columna);
+			 HttpHeaders headers = new HttpHeaders();
+			 headers.setLocation(ucBuilder.path("/columna/{id}").buildAndExpand(columna.getIdColumna()).toUri());
+			 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);  //funciona, id_proyecto = null
+		}
 	
 
 }

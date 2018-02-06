@@ -1,7 +1,18 @@
 package model;
 
-import java.util.*;
-import javax.persistence.*;
+import java.util.Collection;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="USUARIO")
@@ -13,10 +24,16 @@ public class Usuario implements java.io.Serializable {
 	private String nombre;
 	private String apellido;
 	private String mail;
+	
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, 
+            property = "@idProyecto")
 	@ManyToMany (mappedBy="miembrosProyecto", fetch=FetchType.EAGER) 
-	private Collection<Proyecto> proyectos;
+	private Set<Proyecto> proyectos;
+	
+	@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, 
+            property = "@idTarea")
 	@ManyToMany (mappedBy="miembrosTarea", fetch=FetchType.EAGER) 
-	private Collection<Tarea> tareas;
+	private Set<Tarea> tareas;
 
 	public Usuario(String username, String clave, String nombre, String apellido, String mail ) {
 		this.setNombreUsuario(username);
@@ -26,9 +43,17 @@ public class Usuario implements java.io.Serializable {
 		this.setMail(mail);
 	}
 
+	public Set<Tarea> getTareas() {
+		return tareas;
+	}
+
+	public void setTareas(Set<Tarea> tareas) {
+		this.tareas = tareas;
+	}
+
 	public Usuario() {}
 	
-	public void setProyectos(Collection<Proyecto> proyectos) {
+	public void setProyectos(Set<Proyecto> proyectos) {
 		this.proyectos = proyectos;
 	}
 	public Collection<Proyecto> getProyectos(){

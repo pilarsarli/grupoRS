@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import model.Columna;
+import model.Tarea;
 import model.daoHibernateJPA.ColumnaDaoJPA;
+import model.daoHibernateJPA.TareaDaoJPA;
 
 @RestController 
 @RequestMapping("/columnas")
@@ -20,6 +22,8 @@ public class ColumnaRestController {
 	
 	@Autowired
 	ColumnaDaoJPA service; 
+	@Autowired
+	TareaDaoJPA serviceTarea; 
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json") 
 	public ResponseEntity<Columna> getColumna(@PathVariable("id") long id){
@@ -31,7 +35,7 @@ public class ColumnaRestController {
 		return new ResponseEntity<Columna>(columna, HttpStatus.OK); //error con las tareas de json
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<Void> createColumna(@RequestBody Columna columna, UriComponentsBuilder ucBuilder) {
 		System.out.println("Creando la columna " + columna.getNombre() );
 		/*
@@ -39,12 +43,12 @@ public class ColumnaRestController {
 			System.out.println("Ya existe una columna con nombre " + columna.getNombre());
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT); //Código de respuesta 409
 		 }
-		 **/
+	
 		 service.persistir(columna);
 		 HttpHeaders headers = new HttpHeaders();
 		 headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(columna.getIdColumna()).toUri());
 		 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);  //funciona, id_proyecto = null
-	}
+	}*/
 	
 	 @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	 public ResponseEntity<Columna> updateColumna(@PathVariable("id") long id, @RequestBody Columna columna) {
@@ -61,4 +65,18 @@ public class ColumnaRestController {
 		 service.actualizar(currentColumna);
 		 return new ResponseEntity<Columna>(currentColumna, HttpStatus.OK); //funciona
 	 }
+	 @RequestMapping(value = "/{id}/tarea", method = RequestMethod.POST)
+		public ResponseEntity<Void> createTarea(@RequestBody Tarea tarea, UriComponentsBuilder ucBuilder,@PathVariable("id") long id) {
+			Columna c = service.recuperar(id);
+			tarea.setColumna(c);
+		 	System.out.println("Creando la tarea " + tarea.getNombre());
+			if (service.existe(tarea.getNombre())) {
+				System.out.println("Ya existe una tarea con nombre " + tarea.getNombre());
+				return new ResponseEntity<Void>(HttpStatus.CONFLICT); //Código de respuesta 409
+			 }
+			 serviceTarea.persistir(tarea);
+			 HttpHeaders headers = new HttpHeaders();
+			 headers.setLocation(ucBuilder.path("/tarea/{id}").buildAndExpand(tarea.getIdTarea()).toUri());
+			 return new ResponseEntity<Void>(headers, HttpStatus.CREATED); 
+		}
 }

@@ -1,6 +1,10 @@
 package model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name="COMENTARIO")
 public class Comentario implements java.io.Serializable {
@@ -11,6 +15,7 @@ public class Comentario implements java.io.Serializable {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="usuario_id")
 	private Usuario miembro;
+	@JsonIgnore
 	@ManyToOne(optional = false)
 	@JoinColumn(name="tarea_id")
 	private Tarea tarea;

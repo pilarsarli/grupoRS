@@ -32,6 +32,7 @@ public class ItemRestController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<Void> createItem(@RequestBody Item item, UriComponentsBuilder ucBuilder) {
+		
 		System.out.println("Creando el item " + item.getDescripcion());
 		/*
 		 * if (service.existe(item.get())) {
