@@ -23,6 +23,7 @@ import model.daoHibernateJPA.UsuarioDaoJPA;
 @RequestMapping("/usuarios")
 public class UsuarioRestController {
 	
+	
 	@Autowired
 	UsuarioDaoJPA service; //spring deberia levantarlo con el autowired, no hace falta el new
 	@Autowired

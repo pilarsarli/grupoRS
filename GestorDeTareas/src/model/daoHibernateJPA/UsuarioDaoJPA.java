@@ -21,7 +21,7 @@ public class UsuarioDaoJPA extends GenericDaoHibernateJPA<Usuario> implements Us
 	public boolean existeUsuario(String username) {
 		EntityManager em = EMF.getEMF().createEntityManager();
 		Query q = em.createQuery("SELECT u FROM Usuario u WHERE u.nombreUsuario = :usr"); //se pone usuario xq es x la clase no x la tabla
-		q.setParameter("usr", username); //se pone u no *xq jsql no entiende el pelotudo
+		q.setParameter("usr", username); 
 		List<Usuario> resultado = (List<Usuario>) q.getResultList();
 		if(resultado.size()!=0){
 			return true;
