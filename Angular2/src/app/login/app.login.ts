@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class Login {
   title = 'Inicio de sesión';
+  username : string;
+  password : string;
+  login(){}
 }

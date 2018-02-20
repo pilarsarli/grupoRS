@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import { Home } from './home/app.home';
 // Array con las rutas de este módulo. Ninguna funcional.
 const routes: Routes = [
-  {path: '', component: AppComponent},
+  {path: '', component: Login},
   {path:'login', component: Login},
   {path:'registro', component: Registro},
   {path:'home', component:Home},

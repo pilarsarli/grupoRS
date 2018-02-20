@@ -1,0 +1,25 @@
+.selected {
+  background-color: #CFD8DC !important;
+  color: white;
+}
+
+.panel-body{
+	overflow-y:scroll;
+	max-height: 500px;
+	min-height: 500px; 
+	
+}
+.proyectos li.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}
+.proyectos li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.proyectos .text {
+  position: relative;
+  top: -3px;
+}
+

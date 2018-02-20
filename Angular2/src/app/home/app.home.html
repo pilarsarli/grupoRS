@@ -1,13 +1,41 @@
-<!-- ACA LA NAVBAR DEBERIA TENER LO DE USUAIO LOGGEADO-->
+<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand"><span class="glyphicon glyphicon-user"></span> {{username}}</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="login">Salir <span class="glyphicon glyphicon-log-out"></span></a></li>
+			</ul>
+		</div>
+	</nav>
 
+<div class="container">
+	<div class="well well-sm">
+		<!-- Buscador -->
+		
+		
+		<div class="panel panel-primary proyectos">
+			<div class="panel-heading">Mis Proyectos</div>
+			<div class="panel-body">
 
-<div class="panel panel-primary">
-	<div class="panel-heading">Mis Proyectos</div>
-	<div class="panel-body">
-		<ul class="list-group">
-	  		<li class="list-group-item">First item</li>
-	  		<li class="list-group-item">Second item</li>
-	  		<li class="list-group-item">Third item</li>
-		</ul>
+				<ul class="list-group">
+					<li *ngFor="let proyecto of proyectos" class="list-group-item">
+						<a data-toggle="collapse" href="#{{proyecto.id}}"><b>{{proyecto.nombre}}</b></a>
+						<div class="collapse" id={{proyecto.id}}>
+							<div>
+								<span>ID: </span>{{proyecto.id}}
+							</div>
+							<div>
+								<span>Fecha de Inicio: </span> {{proyecto.fecha_inicio}}
+							</div>
+							<div>
+								<span>Fecha Estimada de Fin: </span> {{proyecto.fecha_estimada}}
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
 	</div>
 </div>
