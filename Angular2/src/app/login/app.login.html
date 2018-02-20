@@ -1,0 +1,25 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+           
+            <form class="form-signin">
+                <input type="text" id="usernameInput" ng-model="username" class="form-control" placeholder="Nombre de Usuario" required autofocus>
+                <input type="password" id="passwordInput" ng-model="password"  class="form-control" placeholder="Contraseña" required>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Recordarme
+                    </label>
+                </div>
+                <button ng-click="login()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Ingresar</button>
+            </form><!-- /form -->
+            <!-- 
+            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>
+             -->
+        </div><!-- /card-container -->
+    </div><!-- /container -->

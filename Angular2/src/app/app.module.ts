@@ -4,13 +4,17 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { AppComponent } from './app.component';
-import { Login } from './app.login';
+import { Login } from './login/app.login';
+import { Registro } from './registration/app.registro';
+import { Home } from './home/app.home';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    Login
+    Login,
+    Registro,
+    Home
   ],
   imports: [
     BrowserModule,

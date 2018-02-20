@@ -1,0 +1,47 @@
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<div class="container">
+	<div class="card card-container">
+		<h2>Nuevo Usuario</h2>
+		<form class="form">
+			<label>Nombre de Usuario</label> <input type="text"
+				id="usernameInput" ng-model="username" class="form-control"
+				placeholder="Elija un Nombre de Usuario" required autofocus>
+			<p></p>	
+			<label>Nombre</label> <input type="text" id="nombreInput"
+				ng-model="nombre" class="form-control"
+				placeholder="Ingrese su nombre" required> 
+			<p></p>
+			<label>Apellido</label> <input type="text" id="apellidoInput" ng-model="apellido"
+				class="form-control" placeholder="Ingrese su apellido" required>
+			<p></p>
+			<label>Dirección de email</label> <input type="text" id="emailInput"
+				ng-model="email" class="form-control"
+				placeholder="Ingrese una dirección de correo" required>
+			<p></p> 
+			<label>Contraseña</label> <input type="password" id="passwordInput"
+				ng-model="password" class="form-control" placeholder="Elija una contraseña"
+				required>
+				<p></p>
+			<div id="remember" class="checkbox">
+				<label> <input type="checkbox" value="remember-me">
+					Acepto términos y condiciones
+				</label>
+			</div>
+			<button ng-click="registrarse()"
+				class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Registrarse</button>
+		</form>
+		<!-- /form -->
+		<!-- 
+            <a href="#" class="forgot-password">
+                Forgot the password?
+            </a>
+             -->
+	</div>
+	<!-- /card-container -->
+</div>
+<!-- /container -->

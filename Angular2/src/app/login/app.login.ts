@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'login',
   template :'Login',
   templateUrl: './app.login.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.login.css']
 })
 export class Login {
   title = 'Inicio de sesión';
